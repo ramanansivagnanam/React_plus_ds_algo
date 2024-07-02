@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export default function Timer() {
   const [timer, updateTimer] = useState(0);
+  const timerRef = useRef(null);
+  
   useEffect(() => {
     return () => {
         console.log('this is run on every unmount 1');
     }
   }, []);
   useEffect(()=> {
-   const timerInterval = setInterval(() => {
+    timerRef.current = setInterval(() => {
     console.log('Timer is still running' , timer);
         updateTimer((preState) => {
             return preState + 1
@@ -18,11 +20,21 @@ export default function Timer() {
     return  () => {
         console.log('Component unmounted');
         console.log('this is run on every unmount 2');
-        clearInterval(timerInterval)
+        clearInterval(timerRef.current)
     }
 
   }, []);
+  const stopTimer = () => {
+    clearInterval(timerRef.current);
+    console.log('Stop the timer state', timer );
+
+  }
   return (
-    <div> Timer running : <span>{timer}</span></div>
+    <div> Timer running : <span>{timer}</span>
+      <div>
+         <button onClick={stopTimer}>Stop Timer</button>
+      </div>
+     </div>
+    
   )
 }
