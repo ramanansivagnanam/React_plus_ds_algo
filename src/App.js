@@ -1,18 +1,37 @@
 import React, { useCallback, useState } from "react";
-import './App.css';
+import "./App.css";
+import ButtonWithTooltip from "./ButtonWithTooltip";
 const App = () => {
-
-  const [text, updateText] = useState('Rendered text');
-  const changeText = useCallback(() => {
-    updateText((prevState)=>{
-      console.log('prev data is', prevState);
-      return prevState + ' Updated text';
-    })
-  }, []);
   return (
     <>
-      <p>{text}</p>
-      <button onClick={changeText}>Change Text</button>
+      <ButtonWithTooltip
+        tooltipContent={
+          <>
+            <div>I am the tooltip content showing above</div>
+            <div>Some more content </div>
+            <br />
+          </>
+        }
+      />
+      <br />
+      <ButtonWithTooltip
+        tooltipContent={
+          <>
+            <div>I am the tooltip content showing above</div>
+            <div>Some more content </div>
+            <br />
+          </>
+        }
+      />
+       <br />
+      <ButtonWithTooltip
+        tooltipContent={
+          <>
+            <div>Some more content </div>
+            <br />
+          </>
+        }
+      />
     </>
   );
 };
