@@ -1,22 +1,45 @@
-import React, { Suspense, lazy, useCallback, useState } from "react";
+import React from "react";
 import "./App.css";
-import ButtonWithTooltip from "./ButtonWithTooltip";
-import UseRefSample from "./UseRefSample";
-import Child1 from "./Child1";
-import Button from "./Button.js";
-import { ThemeContext } from "./context.js";
-const Text = lazy(() => import("./Text.js"));
+
+import { Link, Route, Routes, useParams } from "react-router-dom";
+import Navbar from "./Navbar/Navbar";
 
 const App = () => {
-  const [theme, updateTheme] = useState("dark");
+  const Home = () => {
+    return <div>Home page</div>;
+  };
+
+  const About = () => {
+    return <div>About page</div>;
+  };
+
+  const Carrer = () => {
+    return <div>Carrer page</div>;
+  };
+
+  const ContactUS = () => {
+    return <div>ContactUS page</div>;
+  };
+
+  const DynamicProfile = () => {
+    console.log('DynamicProfile');
+    const {name} = useParams();
+    console.log({name});
+    return <div>DynamicProfile : {name}</div>
+  }
 
   return (
     <>
-      <ThemeContext.Provider value={[theme, updateTheme]}>
-        <div>
-          <Button> Theme value {theme} </Button>
-        </div>
-      </ThemeContext.Provider>
+      <div>
+        <Navbar />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/carrer" element={<Carrer />} />
+        <Route path="/contact-us" element={<ContactUS />} />
+        <Route path="/dynamic/:name" element={<DynamicProfile />} />
+      </Routes>
     </>
   );
 };
