@@ -1,10 +1,17 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import { ThemeContext } from './context';
 
 export default function Button(props) {
     const { children } = props;
-    const buttonRef = useRef(null);
-    
+    const [theme, updateTheme ] = useContext(ThemeContext)
+        const buttonRef = useRef(null);
+
+    const handleClick = () => {
+      const theeeme = theme === 'dark' ? 'light' : 'dark';
+      updateTheme(theeeme);
+    }
+   
    return (
-    <button ref={buttonRef}>{children}</button>
+    <button onClick={handleClick} ref={buttonRef}>{children}</button>
   )
 }
