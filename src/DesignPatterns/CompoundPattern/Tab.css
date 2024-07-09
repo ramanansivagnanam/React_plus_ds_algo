@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.tabContainer {
+    height: auto;
+    width: 100%;
+    margin: 20px auto;
+
+}
+.headingContainer {
+    border: 2px solid black;
+    height: 60px;
+    background-color: beige;
+    display: flex;
+    justify-content: space-around;
+}
+.item {
+    width: 100%;
+    background: slateblue;
+    color: black;  
+    cursor: pointer;
+}
+.item:active {
+    background: rgb(155, 155, 160);
+    
+}
+
+.contentContainer {
+    background: wheat;
+}
+.content {
+    height: 400px;
+}
