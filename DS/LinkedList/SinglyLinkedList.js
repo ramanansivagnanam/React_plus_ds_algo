@@ -100,6 +100,27 @@ class SinglyLinkedList {
         }
         return false;
     }
+    print() {
+        let arr = [];
+        let current = this.head;
+        while(current){
+            arr.push(current.value);
+            current = current.next;
+        }
+        console.log(arr);
+    }
+
+    reverse() {
+        //  Prepare this for interview 
+        let prev = this.head;
+        this.head = this.tail;
+        this.tail = prev;
+
+        return this;
+
+        // 1 -> 2 -> 3-> 4 -> 5
+        
+    }
 
 }
 
@@ -114,6 +135,7 @@ s_list.unShift(5);
 s_list.unShift(6);
 
 s_list.get(3)
-
+s_list.print();
+s_list.reverse();
 // s_list.traverse();
 // console.log(s_list);
