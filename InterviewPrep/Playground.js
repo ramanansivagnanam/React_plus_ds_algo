@@ -186,7 +186,7 @@ try {
 
 const nestedArr = [1, { a: { d: { f : [9, 10] } }, b: 3 }, [4, 5]];
 
-// [1, 2, 3, 4, 5]
+// [1, 9, 10, 3, 4, 5]
 
 
 function flattenMixedArray(nestedArr) {
@@ -226,3 +226,21 @@ function firstNonRepatingChar(str) {
 }
 
 console.log(firstNonRepatingChar('abaccdeff')); // 'b'
+
+
+// polyfills for diffrent array methods
+
+if (!Array.prototype.forEachPoly) {
+  Array.prototype.forEachPoly = function(callback, thisArg) {
+    console.log(callback, thisArg, this);
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
+
+const polyCheckArr = [1,2,3,4,5,6];
+
+polyCheckArr.forEachPoly((ele)=> {
+ return ele * 4;
+},this)
