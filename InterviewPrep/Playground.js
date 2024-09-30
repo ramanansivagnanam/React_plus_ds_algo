@@ -244,3 +244,49 @@ const polyCheckArr = [1,2,3,4,5,6];
 polyCheckArr.forEachPoly((ele)=> {
  return ele * 4;
 },this)
+
+
+
+var myObject = {
+  foo: 'bar',
+  func : function() {
+    var self = this;
+    console.log('Outer')
+    console.log(this.foo);
+    console.log(self.foo);
+    (function() {
+      console.log('inner')
+      console.log(this.foo);
+      console.log(self.foo);
+    }())
+
+  }
+}
+
+myObject.func();
+
+var myObject1 = {
+  foo: 'bar',
+  func : () => {
+    var self = this;
+    console.log('Outer')
+    console.log(this.foo);
+    console.log(self.foo);
+    (function() {
+      console.log('inner')
+      console.log(this.foo);
+      console.log(self.foo);
+    }())
+
+  }
+}
+
+myObject1.func();
+
+
+var y = 1;
+if(function f() {}) {
+  y += typeof f;
+}
+
+console.log(y);
